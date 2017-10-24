@@ -1,8 +1,44 @@
 # Steam.ly Analytics Service API
 
-### Recommendation Interface
+## Recommendation Interface
 
-#### GET
+### Schema
+
+<!-- #### Users
+|Parameter         |Description                    |
+|------------------|-------------------------------|
+|user_id           |Integer                        |
+|user_preferences  |String                         |
+
+#### Games
+|Parameter         |Description                    |
+|------------------|-------------------------------|
+|game_id           |Integer                        |
+|title             |String                         |
+|category          |String                         |
+|number_of_clicks  |Integer												 | -->
+
+#### Recommendations	
+|Parameter         |Description                    |
+|------------------|-------------------------------|
+|id                |Integer, auto increment        |
+|user_id           |Integer                        |
+|game_id           |Integer                        |
+|title             |String                         |
+|category          |String                         |
+
+
+TODO: Add recommendation_coefficient
+
+#### Recommended User Game	
+|Parameter         |Description                    |
+|------------------|-------------------------------|
+|id                |Integer, auto increment        |
+|user_id           |Integer                        |
+|game_id           |Integer                        |
+|date              |date                           |
+
+### /GET
 
 #### /recommendations
 
@@ -23,17 +59,26 @@ Options: { type: simple | full }
 **full:**
 ```
 {
-	title: "Destiny 2",
+	user_id: 1,
 	game_id: 1,
+	title: "Destiny 2",
 	category: "FPS",
-	recommendation: 8 [score: 1 - 10 rating]
+	recommendation: 8
 }
 ```
 
 
-### Metrics Interface
+## Metrics Interface
 
-#### GET
+### Schema
+
+<!-- #### Analytics
+|Parameter         |Description                    |
+|------------------|-------------------------------|
+|user_id           |Integer                        |
+|user_preferences  |String                         | -->
+
+### /GET
 
 #### /gamemetrics
 
@@ -46,7 +91,7 @@ __Response:__
 	game_id: 1,
 	game_title: "Destiny 2",
 	category: "FPS",
-	rating: 8,
+	rating: [8],
 	clicks: 94123
 }
 ```
