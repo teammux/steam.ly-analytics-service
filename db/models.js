@@ -14,6 +14,6 @@ class RecommendedUser extends Model {
 
 
 module.exports = {
-	Recommendations: Recommendations,
-	RecommendedUser: RecommendedUser
-}
+  Recommendations: Recommendations,
+  RecommendedUser: RecommendedUser
+};

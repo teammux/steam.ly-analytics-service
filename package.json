@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "nodemon --inspect server/index.js",
     "test": "mocha",
-    "generateuser": "node db/dummydata/userdata.js 1000",
-    "fakerecommendation": "node db/dummydata/fakerecommendation.js 100"
+    "generateuser": "node db/dummydatascript/userdata.js 1000",
+    "generaterecommendation": "node db/dummydatascript/fakeRecommendation.js 1000",
+    "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js"
   },
   "repository": {
     "type": "git",

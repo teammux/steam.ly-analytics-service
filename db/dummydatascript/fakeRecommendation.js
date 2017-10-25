@@ -48,17 +48,17 @@ class Recommendation {
       preference: ${this.preference}
     `);
   }
-};
+}
 
 const getRandomNumberInclusive = (begin = 0, end) => {
   return Math.floor(Math.random() * end) + begin;
-}
+};
 
 const getRandomFieldValue = (weightTable) => {
   return weightTable[getRandomNumberInclusive(0, weightTable.length)];
 };
 
-const generateRandomListOfUsers = (listSize = DEFAULT_TOTAL_USER_COUNT) => {
+const generatedRandomListOfRecommendation = (listSize = DEFAULT_TOTAL_USER_COUNT) => {
   let recommendations = [];
 
   const PREFERENCE_RATIO_WEIGHT_TABLE = generateExpandedWeightTable(PREFERENCE_RATIO);
@@ -66,9 +66,9 @@ const generateRandomListOfUsers = (listSize = DEFAULT_TOTAL_USER_COUNT) => {
   for (let i = DEFAULT_USER_NUMBER_START; i < listSize + DEFAULT_USER_NUMBER_START; i++) {
     // TODO: hoist these to be more memory-efficient
     const id = i;
-    const userId = i
-    const gameId = i
-    const title = TITLE_PREFIX + i
+    const userId = i;
+    const gameId = i;
+    const title = TITLE_PREFIX + i;
     const preference = getRandomFieldValue(PREFERENCE_RATIO_WEIGHT_TABLE);
     const recommendation = new Recommendation(id, userId, gameId, title, preference);
     recommendations.push(recommendation);
@@ -76,20 +76,20 @@ const generateRandomListOfUsers = (listSize = DEFAULT_TOTAL_USER_COUNT) => {
   }
 
   return recommendations;
-}
+};
 
 module.exports = {
-  generateRandomListOfUsers: generateRandomListOfUsers,
+  generatedRandomListOfRecommendation: generatedRandomListOfRecommendation
 };
 
 // simple CLI
-// [usage] node userdata.js <NUMBER_OF_USERS_TO_GENERATE>
+// [usage] node fakerecommendation.js <NUMBER_OF_RECOMMENDATIONS_TO_GENERATE>
 if (process.argv.length > 2) {
   const cmd = process.argv[2];
   const parsedNumberCmd = parseInt(cmd);
   if (Number.isInteger(parsedNumberCmd) && parsedNumberCmd > 0) {
-    console.log(`generating random list of: ${parsedNumberCmd} users...`);
-    let generatedUsers = generateRandomListOfUsers(parsedNumberCmd);
+    console.log(`generating random list of: ${parsedNumberCmd} recommendations...`);
+    let generatedUsers = generatedRandomListOfRecommendation(parsedNumberCmd);
 
     // TODO: add option to specify an alternate output_file_name
     fs.writeFile(DEFAULT_OUTPUT_FILE, JSON.stringify(generatedUsers), (err) => {

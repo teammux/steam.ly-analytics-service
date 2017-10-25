@@ -7,4 +7,4 @@ module.exports = {
     password : 'password',
     database : 'database'
   }
-}
+};
