@@ -1,14 +1,19 @@
 const Model = require('objection').Model;
 
-module.exports.Recommendations = Model.extend({
+class Recommendations extends Model {
   static get tableName() {
-    return 'recommendation';
+    return 'recommendations';
   }
-});
+}
 
-module.exports.Recommended_User_Game = Model.extend({
+class RecommendedUser extends Model {
   static get tableName() {
     return 'recommendeduser';
   }
-});
+}
 
+
+module.exports = {
+	Recommendations: Recommendations,
+	RecommendedUser: RecommendedUser
+}

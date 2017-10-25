@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "schema": "node db/schema.js",
     "test": "mocha",
-    "generateuser": "node db/dummydata/userdata.js 1000"
+    "generateuser": "node db/dummydata/userdata.js 1000",
+    "fakerecommendation": "node db/dummydata/fakerecommendation.js 100"
   },
   "repository": {
     "type": "git",

@@ -27,7 +27,6 @@
 |title             |String                         |
 |category          |String                         |
 
-
 TODO: Add recommendation_coefficient
 
 #### Recommended User Game	
