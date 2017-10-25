@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "schema": "node db/schema.js",
-    "test": "mocha"
+    "test": "mocha",
+    "generateuser": "node db/dummydata/userdata.js 1000"
   },
   "repository": {
     "type": "git",

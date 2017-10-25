@@ -37,3 +37,6 @@ db/config.js
 
 # Package-lock JSON
 package-lock.json
+
+# userdata
+userdata_output.txt
