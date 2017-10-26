@@ -11,7 +11,7 @@ routes.get('/api/v1/recommendations', (req, res) => {
 });
 
 routes.get('/elastic/ping', (req, res) => {
-   ELASTICSEARCH.ping(req, res);
+  ELASTICSEARCH.ping(req, res);
 });
 
 
