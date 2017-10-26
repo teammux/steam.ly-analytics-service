@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --inspect server/index.js",
+    "test": "mocha",
+    "generateuser": "node db/dummydatascript/userdata.js 1000",
+    "generaterecommendation": "node db/dummydatascript/fakeRecommendation.js 1000",
+    "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,21 @@
   },
   "homepage": "https://github.com/teammux/steam.ly-analytics-service#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "elasticsearch": "^13.3.1",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "knex": "^0.13.0",
+    "mocha": "^4.0.1",
+    "objection": "^0.8.9",
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0"
   }
 }

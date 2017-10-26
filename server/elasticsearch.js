@@ -1,100 +1,25 @@
-const elasticSearch = require('elasticsearch');
+const elasticsearch = require('elasticsearch');
 
-const elasticsearch = new elasticsearch.Client({
-	host: '127.0.0.1:9200',
-	log: 'info'
+const elasticClient = new elasticsearch.Client({
+  host: 'localhost:9200',
+  log: 'trace',
 });
 
-const indexName = 'randomIndex';
-
-
-/**
-* Delete an existing index
-*/
-
-const deleteIndex = () => {
-	return elasticClient.indices.delete({
-		index: indexName;
-	});
-}
-
-/**
-* create the index
-*/
-
-
-const initIndex = () => {
-	return elasticClient.indices.create({
-		index: indexName;
-	});
-}
-
-/**
-* check if the index exists
-*/
-*
-const indexExists = () => {
-	return elasticClient.indices.exists({
-		index: indexName;
-	})
-}
-
-const initMapping = () => {  
-    return elasticClient.indices.putMapping({
-        index: indexName,
-        type: "document",
-        body: {
-            properties: {
-                title: { type: "string" },
-                content: { type: "string" },
-                suggest: {
-                    type: "completion",
-                    analyzer: "simple",
-                    search_analyzer: "simple",
-                    payloads: true
-                }
-            }
-        }
+const ping = (req, res) => {
+  elasticClient.ping({
+    requestTimeout: 30000,
+  }, (err) => {
+    if (err) {
+      res.status(500);
+      return res.json({
+        status: false, msg: 'Elasticsearch cluster is down!',
+      });
+    }
+    res.status(500);
+    return res.json({
+      status: true, msg: 'Success! Elasticsearch cluster is up!',
     });
-}
+  });
+};
 
-const addDocument = (document) => {  
-    return elasticClient.index({
-        index: indexName,
-        type: "document",
-        body: {
-            title: document.title,
-            content: document.content,
-            suggest: {
-                input: document.title.split(" "),
-                output: document.title,
-                payload: document.metadata || {}
-            }
-        }
-    });
-}
-
-const getSuggestions = (input) => {  
-    return elasticClient.suggest({
-        index: indexName,
-        type: "document",
-        body: {
-            docsuggest: {
-                text: input,
-                completion: {
-                    field: "suggest",
-                    fuzzy: true
-                }
-            }
-        }
-    })
-}
-
-module.exports = {
-	deleteIndex: deleteIndex,
-	initIndex: initIndex,
-	indexExists: indexExists,
-	initMapping: initMapping,
-	addDocument: addDocument,
-	getSuggestions: getSuggestions
-}
+module.exports.ping = ping;
