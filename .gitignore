@@ -35,7 +35,7 @@ bower_components/
 .DS_Store
 
 # PostgreSQL configuration
-db/knexfile.js
+knexfile.js
 
 
 # Package-lock JSON

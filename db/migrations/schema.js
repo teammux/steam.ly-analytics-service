@@ -1,23 +1,23 @@
-module.exports.up = function (knex) {
-  return knex.schema
-    .createTableIfNotExists('recommendations', function (table) {
+module.exports.up = knex => (
+  knex.schema
+    .createTableIfNotExists('recommendations', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
       table.integer('game_id');
       table.string('title');
       table.string('preference');
     })
-    .createTableIfNotExists('recommendeduser', function (table) {
+    .createTableIfNotExists('recommendeduser', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
       table.integer('game_id');
       table.date('date');
     })
-};
+);
 
-module.exports.down = function (knex) {
-  return knex.schema
+module.exports.down = knex => (
+  knex.schema
     .dropTableIfExists('recommendeduser')
-    .dropTableIfExists('recommendations');
-};
+    .dropTableIfExists('recommendations')
+);
 

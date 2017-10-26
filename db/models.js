@@ -13,7 +13,5 @@ class RecommendedUser extends Model {
 }
 
 
-module.exports = {
-  Recommendations: Recommendations,
-  RecommendedUser: RecommendedUser
-};
+module.exports.Recommendations = Recommendations;
+module.exports.RecommendedUser = RecommendedUser;
