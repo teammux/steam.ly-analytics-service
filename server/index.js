@@ -7,6 +7,7 @@ const Model = require('objection').Model;
 const api = require('./api');
 const PORT = process.env.DATABASE_URL || 3000;
 
+
 // initialize knex
 const knex = Knex(knexConfig);
 Model.knex(knex);

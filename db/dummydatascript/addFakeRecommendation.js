@@ -7,8 +7,8 @@ const Model = require('objection').Model;
 const knex = Knex(knexConfig);
 Model.knex(knex);
 
-const DEFAULT_TOTAL_USER_COUNT = 5750000;
-const DEFAULT_USER_NUMBER_START = 750000;
+const DEFAULT_TOTAL_USER_COUNT = 6000000;
+const DEFAULT_USER_NUMBER_START = 1;
 
 const PREFERENCE_RATIO = {
   'NONE': 10,
@@ -47,8 +47,8 @@ const addRecommendationToDB = async () => {
 
 	for (let i = DEFAULT_USER_NUMBER_START; i < (DEFAULT_TOTAL_USER_COUNT + DEFAULT_USER_NUMBER_START); i++) {
 		await models.Recommendations.query().insert({
-			userId: i,
-			gameId: i,
+			user_id: i,
+			game_id: i,
 			title: TITLE_PREFIX + i,
 			preference: getRandomFieldValue(PREFERENCE_RATIO_WEIGHT_TABLE)
     })
