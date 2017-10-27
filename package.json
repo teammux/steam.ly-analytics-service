@@ -28,7 +28,9 @@
     "knex": "^0.13.0",
     "mocha": "^4.0.1",
     "objection": "^0.8.9",
-    "pg": "^7.3.0"
+    "pg": "^7.3.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",

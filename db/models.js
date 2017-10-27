@@ -1,4 +1,4 @@
-const Model = require('objection').Model;
+const { Model } = require('objection');
 
 class Recommendations extends Model {
   static get tableName() {

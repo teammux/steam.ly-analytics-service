@@ -1,10 +1,14 @@
 const models = require('./models');
 
-module.exports.getUserRecommendation = userId => (
+const getUserRecommendation = userId => (
   models.Recommendations.query()
     .where('user_id', '=', userId)
 );
 
-module.exports.getAllRecommendations = () => (
+const getAllRecommendations = () => (
   models.Recommendations.query()
 );
+
+module.exports.getUserRecommendation = getUserRecommendation;
+module.exports.getAllRecommendations = getAllRecommendations;
+
