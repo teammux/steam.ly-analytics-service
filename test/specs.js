@@ -1,4 +1,4 @@
-const { expect, assert } = require('chai');
+const { expect } = require('chai');
 const dbHelpers = require('../db/dbHelpers');
 const { Model } = require('objection');
 const Knex = require('knex');
@@ -12,10 +12,9 @@ Model.knex(knex);
 
 
 describe('Database', () => {
-
   describe('query one recommendation from database', () => {
     it('should query user recommendation', () => {
-      return dbHelpers.getUserRecommendation(1)
+      return dbHelpers.getUserRecommendation(10)
         .then((recommendation) => {
           expect(recommendation).to.be.an('array');
           expect(recommendation[0]).to.property('id');
@@ -27,4 +26,3 @@ describe('Database', () => {
     });
   });
 });
-
