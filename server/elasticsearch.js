@@ -5,21 +5,69 @@ const elasticClient = new elasticsearch.Client({
   log: 'trace',
 });
 
-const ping = (req, res) => {
+const ping = () => {
   elasticClient.ping({
-    requestTimeout: 30000,
+    requestTimeout: 3000,
   }, (err) => {
     if (err) {
-      res.status(500);
-      return res.json({
-        status: false, msg: 'Elasticsearch cluster is down!',
-      });
+      console.log('elasticsearch cluster is down!');
+    } else {
+      console.log('All is well');
     }
-    res.status(500);
-    return res.json({
-      status: true, msg: 'Success! Elasticsearch cluster is up!',
-    });
   });
 };
 
+const indexName = 'recommendation';
+
+/**
+* Delete an existing index
+*/
+
+const deleteIndex = () => (
+  elasticClient.indices.delete({
+    index: indexName,
+  })
+);
+
+/**
+* create the index
+*/
+
+const initIndex = () => (
+  elasticClient.indices.create({
+    index: indexName,
+  })
+);
+
+/**
+* check if the index exists
+*/
+
+const indexExists = () => (
+  elasticClient.indices.exists({
+    index: indexName,
+  })
+);
+
+const initMapping = () => (
+  elasticClient.indices.putMapping({
+    index: indexName,
+    type: 'recommendation',
+    body: {
+      properties: {
+        user_id: { type: 'integer' },
+        game_id: { type: 'integer' },
+        title: { type: 'string' },
+        preference: { type: 'string' },
+      },
+    },
+  })
+);
+
+module.exports.elasticClient = elasticClient;
 module.exports.ping = ping;
+module.exports.deleteIndex = deleteIndex;
+module.exports.initIndex = initIndex;
+module.exports.indexExists = indexExists;
+module.exports.initMapping = initMapping;
+

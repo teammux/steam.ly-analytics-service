@@ -10,17 +10,28 @@ const Model = require('objection').Model;
 const knex = Knex(knexConfig);
 Model.knex(knex);
 
-const DEFAULT_TOTAL_USER_COUNT = 6000000;
+const DEFAULT_TOTAL_USER_COUNT = 500000;
 const DEFAULT_USER_NUMBER_START = 1;
 
 const PREFERENCE_RATIO = {
   NONE: 10,
-  FPS: 29,
-  ACTION: 36,
-  RPG: 25,
+  FPS: 50,
+  ACTION: 30,
+  RPG: 20,
 };
 
-const TITLE_PREFIX = 'game_';
+const RANDOM_GAME = [
+  "PLAYERUNKNOWN'S BATTLEGROUNDS",
+  'Dota 2',
+  'Counter-Strike: Global Offensive',
+  'Warframe',
+  'PAYDAY 2',
+  'Team Fortress 2',
+  'H1Z1',
+  'Grand Theft Auto V',
+  'ARK: Survival Evolved',
+  "Tom Clancy's Rainbow Six Siege",
+];
 
 // use a quick-and-dirty weighted randomizer with expansion
 // this is quick and okay so long as our totalWeights isn't astronomicz`ally large
@@ -49,10 +60,11 @@ const addRecommendationToDB = async () => {
   const PREFERENCE_RATIO_WEIGHT_TABLE = generateExpandedWeightTable(PREFERENCE_RATIO);
 
   for (let i = DEFAULT_USER_NUMBER_START; i < (DEFAULT_TOTAL_USER_COUNT + DEFAULT_USER_NUMBER_START); i += 1) {
+    const randomNumber = getRandomNumberInclusive(0, RANDOM_GAME.length);
     await models.Recommendations.query().insert({
       user_id: i,
-      game_id: i,
-      title: TITLE_PREFIX + i,
+      game_id: randomNumber,
+      title: RANDOM_GAME[randomNumber],
       preference: getRandomFieldValue(PREFERENCE_RATIO_WEIGHT_TABLE),
     })
       .then(recommendation => console.log(recommendation))

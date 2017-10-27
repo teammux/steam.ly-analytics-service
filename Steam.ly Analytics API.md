@@ -4,20 +4,6 @@
 
 ### Schema
 
-<!-- #### Users
-|Parameter         |Description                    |
-|------------------|-------------------------------|
-|user_id           |Integer                        |
-|user_preferences  |String                         |
-
-#### Games
-|Parameter         |Description                    |
-|------------------|-------------------------------|
-|game_id           |Integer                        |
-|title             |String                         |
-|category          |String                         |
-|number_of_clicks  |Integer												 | -->
-
 #### Recommendations	
 |Parameter         |Description                    |
 |------------------|-------------------------------|
@@ -60,9 +46,8 @@ Options: { type: simple | full }
 {
 	user_id: 1,
 	game_id: 1,
-	title: "Destiny 2",
-	category: "FPS",
-	recommendation: 8
+	title: "Counter-Strike: Global Offensive",
+	preference: "FPS"
 }
 ```
 
