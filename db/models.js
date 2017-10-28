@@ -6,12 +6,13 @@ class Recommendations extends Model {
   }
 }
 
-class RecommendedUser extends Model {
+class Gamemetrics extends Model {
   static get tableName() {
-    return 'recommendeduser';
+    return 'gamemetrics';
   }
 }
 
 
 module.exports.Recommendations = Recommendations;
-module.exports.RecommendedUser = RecommendedUser;
+module.exports.Gamemetrics = Gamemetrics;
+

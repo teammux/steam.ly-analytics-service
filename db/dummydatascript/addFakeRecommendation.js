@@ -4,16 +4,17 @@
 const models = require('../models');
 const Knex = require('knex');
 const knexConfig = require('../knexfile');
-const Model = require('objection').Model;
+const { Model } = require('objection');
+const { elasticClient } = require('../../server/elasticsearch');
 
 // initialize knex
 const knex = Knex(knexConfig);
 Model.knex(knex);
 
-const DEFAULT_TOTAL_USER_COUNT = 500000;
+const DEFAULT_TOTAL_USER_COUNT = 100000;
 const DEFAULT_USER_NUMBER_START = 1;
 
-const PREFERENCE_RATIO = {
+const RECOMMENDATION_RATIO = {
   NONE: 10,
   FPS: 50,
   ACTION: 30,
@@ -57,7 +58,7 @@ const getRandomFieldValue = weightTable => (
 );
 
 const addRecommendationToDB = async () => {
-  const PREFERENCE_RATIO_WEIGHT_TABLE = generateExpandedWeightTable(PREFERENCE_RATIO);
+  const RECOMMENDATION_RATIO_WEIGHT_TABLE = generateExpandedWeightTable(RECOMMENDATION_RATIO);
 
   for (let i = DEFAULT_USER_NUMBER_START; i < (DEFAULT_TOTAL_USER_COUNT + DEFAULT_USER_NUMBER_START); i += 1) {
     const randomNumber = getRandomNumberInclusive(0, RANDOM_GAME.length);
@@ -65,9 +66,21 @@ const addRecommendationToDB = async () => {
       user_id: i,
       game_id: randomNumber,
       title: RANDOM_GAME[randomNumber],
-      preference: getRandomFieldValue(PREFERENCE_RATIO_WEIGHT_TABLE),
+      preference: getRandomFieldValue(RECOMMENDATION_RATIO_WEIGHT_TABLE),
     })
-      .then(recommendation => console.log(recommendation))
+      .then((recommendation) => {
+        elasticClient.create({
+          index: 'recommendations',
+          type: 'recs',
+          id: i,
+          body: {
+            user_id: recommendation.user_id,
+            game_id: recommendation.game_id,
+            title: recommendation.title,
+            preference: recommendation.preference,
+          },
+        });
+      })
       .catch(err => console.log(err));
   }
 };
