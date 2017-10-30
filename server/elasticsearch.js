@@ -1,7 +1,10 @@
 const elasticsearch = require('elasticsearch');
 
+const HOST = process.env.ELASTIC_SEARCH_HOST || 'localhost';
+const PORT = process.env.ELASTIC_SEARCH_PORT || 9200;
+
 const elasticClient = new elasticsearch.Client({
-  host: 'localhost:9200',
+  host: `${HOST}:${PORT}`,
   log: 'trace',
 });
 

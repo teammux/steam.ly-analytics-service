@@ -1,5 +1,5 @@
 {
-  "name": "steam.ly-analytics",
+ "name": "steam.ly-analytics",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,8 @@
     "test": "mocha",
     "generateuser": "node db/dummydatascript/userdata.js 1000",
     "generaterecommendation": "node db/dummydatascript/fakeRecommendation.js 1000",
-    "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js"
+    "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js",
+    "simulate": "node simulation/requestrecommendation.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/teammux/steam.ly-analytics-service#readme",
   "dependencies": {
+    "axios": "^0.17.0",
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
     "elasticsearch": "^13.3.1",
