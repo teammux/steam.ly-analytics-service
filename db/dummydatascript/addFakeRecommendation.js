@@ -50,7 +50,7 @@ const generateExpandedWeightTable = (weightKeys) => {
 };
 
 const getRandomNumberInclusive = (begin = 0, end) => (
-  Math.floor(Math.random() * end) + begin
+  Math.floor(Math.random() * (end - begin + 1)) + begin
 );
 
 const getRandomFieldValue = weightTable => (
