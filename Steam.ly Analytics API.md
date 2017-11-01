@@ -24,24 +24,13 @@ Example: http://steam.ly/api/v1/recommendations
 
 __Response:__
 
-Options: { type: simple | full }
-
-
-**simple:**
 ```
 {
-	game_id: 1
-}
-```
-
-**full:**
-```
-{
-  id: 1
-	user_id: 1,
-	game_id: 1,
-	title: "Counter-Strike: Global Offensive",
-	preference: "FPS"
+  id: 1,
+  user_id: 1,
+  game_id: 1,
+  title: "Counter-Strike: Global Offensive",
+  preference: "FPS"
 }
 ```
 
@@ -70,11 +59,11 @@ __Response:__
 
 ```
 {
-  id: 1
-	game_id: 1,
-	title: "Destiny 2",
-	average_user_rating: 8,
-	clicks: 5343421
+  id: 1,
+  game_id: 1,
+  title: "Destiny 2",
+  average_user_rating: 8,
+  clicks: 5343421
 }
 ```
 
