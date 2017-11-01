@@ -14,6 +14,6 @@ const getRandomInclusive = (min, max) => {
 
 
 setInterval(() => {
-  getRecommendation(getRandomInclusive(0, 100000));
-}, 500);
+  getRecommendation(getRandomInclusive(0, 500000));
+}, 100);
 
