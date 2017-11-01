@@ -12,12 +12,7 @@ routes.get('/api/v1/recommendations', (req, res) => {
 
 routes.get('/api/v1/recommendations/user/:userId', (req, res) => {
   db.getUserRecommendation(req.params.userId)
-    .then(recommendation => res.json(recommendation));
+    .then(recommendation => res.json(recommendation[0]));
 });
 
-// routes.post('[something]', (req, res) => {
-//   // TODO
-// });
-
 module.exports = routes;
-
