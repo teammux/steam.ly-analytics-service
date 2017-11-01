@@ -7,17 +7,18 @@ module.exports.up = knex => (
       table.string('title');
       table.string('preference');
     })
-    .createTableIfNotExists('recommendeduser', (table) => {
+    .createTableIfNotExists('gamemetrics', (table) => {
       table.increments('id').primary();
-      table.integer('user_id');
       table.integer('game_id');
-      table.date('date');
+      table.integer('title');
+      table.integer('average_user_rating');
+      table.integer('total_clicks');
     })
 );
 
 module.exports.down = knex => (
   knex.schema
-    .dropTableIfExists('recommendeduser')
+    .dropTableIfExists('gamemetrics')
     .dropTableIfExists('recommendations')
 );
 

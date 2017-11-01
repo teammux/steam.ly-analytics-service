@@ -4,38 +4,17 @@
 
 ### Schema
 
-<!-- #### Users
-|Parameter         |Description                    |
-|------------------|-------------------------------|
-|user_id           |Integer                        |
-|user_preferences  |String                         |
+#### Recommendations
 
-#### Games
-|Parameter         |Description                    |
-|------------------|-------------------------------|
-|game_id           |Integer                        |
-|title             |String                         |
-|category          |String                         |
-|number_of_clicks  |Integer												 | -->
-
-#### Recommendations	
 |Parameter         |Description                    |
 |------------------|-------------------------------|
 |id                |Integer, auto increment        |
 |user_id           |Integer                        |
 |game_id           |Integer                        |
 |title             |String                         |
-|category          |String                         |
+|preference        |String                         |
 
 TODO: Add recommendation_coefficient
-
-#### Recommended User Game	
-|Parameter         |Description                    |
-|------------------|-------------------------------|
-|id                |Integer, auto increment        |
-|user_id           |Integer                        |
-|game_id           |Integer                        |
-|date              |date                           |
 
 ### /GET
 
@@ -58,11 +37,11 @@ Options: { type: simple | full }
 **full:**
 ```
 {
+  id: 1
 	user_id: 1,
 	game_id: 1,
-	title: "Destiny 2",
-	category: "FPS",
-	recommendation: 8
+	title: "Counter-Strike: Global Offensive",
+	preference: "FPS"
 }
 ```
 
@@ -71,11 +50,15 @@ Options: { type: simple | full }
 
 ### Schema
 
-<!-- #### Analytics
-|Parameter         |Description                    |
-|------------------|-------------------------------|
-|user_id           |Integer                        |
-|user_preferences  |String                         | -->
+#### Game Metrics
+
+|Parameter            |Description                    |
+|---------------------|-------------------------------|
+|id                   |Integer                        |
+|game_id              |Integer                        |
+|title                |String                         |
+|average_user_rating  |Integer                        |
+|total_clicks         |Integer                        |
 
 ### /GET
 
@@ -87,26 +70,13 @@ __Response:__
 
 ```
 {
+  id: 1
 	game_id: 1,
-	game_title: "Destiny 2",
-	category: "FPS",
-	rating: [8],
-	clicks: 94123
+	title: "Destiny 2",
+	average_user_rating: 8,
+	clicks: 5343421
 }
 ```
-
-#### /categorymetrics
-
-Example: http://steam.ly/api/v1/categorymetrics
-
-__Response:__	
-
-```
-{
-	
-}
-```
-
 
 
 

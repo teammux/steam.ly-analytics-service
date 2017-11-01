@@ -1,25 +1,25 @@
 const elasticsearch = require('elasticsearch');
 
+const HOST = process.env.ELASTIC_SEARCH_HOST || 'localhost';
+const PORT = process.env.ELASTIC_SEARCH_PORT || 9200;
+
 const elasticClient = new elasticsearch.Client({
-  host: 'localhost:9200',
+  host: `${HOST}:${PORT}`,
   log: 'trace',
 });
 
-const ping = (req, res) => {
+const ping = () => {
   elasticClient.ping({
-    requestTimeout: 30000,
+    requestTimeout: 3000,
   }, (err) => {
     if (err) {
-      res.status(500);
-      return res.json({
-        status: false, msg: 'Elasticsearch cluster is down!',
-      });
+      console.log('elasticsearch cluster is down!');
+    } else {
+      console.log('All is well');
     }
-    res.status(500);
-    return res.json({
-      status: true, msg: 'Success! Elasticsearch cluster is up!',
-    });
   });
 };
 
+module.exports.elasticClient = elasticClient;
 module.exports.ping = ping;
+

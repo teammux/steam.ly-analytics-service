@@ -1,17 +1,15 @@
 const routes = require('express').Router();
-const ELASTICSEARCH = require('./elasticsearch');
-
-routes.get('/', (req, res) => {
-  res.end('hello');
-});
+const db = require('../db/dbHelpers');
 
 routes.get('/api/v1/recommendations', (req, res) => {
-  res.end('hello');
+  db.getAllRecommendations()
+    .then(recommendations => res.json(recommendations));
 });
 
-routes.get('/elastic/ping', (req, res) => {
-  ELASTICSEARCH.ping(req, res);
+routes.get('/api/v1/recommendations/user/:userId', (req, res) => {
+  db.getUserRecommendation(req.params.userId)
+    .then(recommendation => res.json(recommendation));
 });
-
 
 module.exports = routes;
+
