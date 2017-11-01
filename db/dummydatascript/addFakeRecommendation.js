@@ -11,8 +11,8 @@ const { elasticClient } = require('../../server/elasticsearch');
 const knex = Knex(knexConfig);
 Model.knex(knex);
 
-const DEFAULT_TOTAL_USER_COUNT = 1000000;
-const DEFAULT_USER_NUMBER_START = 1;
+const DEFAULT_TOTAL_USER_COUNT = 1100000;
+const DEFAULT_USER_NUMBER_START = 1000001;
 
 const RECOMMENDATION_RATIO = {
   NONE: 10,
@@ -69,10 +69,9 @@ const addRecommendationToDB = async () => {
       preference: getRandomFieldValue(RECOMMENDATION_RATIO_WEIGHT_TABLE),
     })
       .then((recommendation) => {
-        elasticClient.create({
+        elasticClient.index({
           index: 'recommendations',
           type: 'recs',
-          id: i,
           body: {
             user_id: recommendation.user_id,
             game_id: recommendation.game_id,
