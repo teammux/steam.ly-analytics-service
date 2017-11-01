@@ -9,7 +9,7 @@
     "generateuser": "node db/dummydatascript/userdata.js 1000",
     "generaterecommendation": "node db/dummydatascript/fakeRecommendation.js 1000",
     "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js",
-    "simulate": "node simulation/getrecommendation.js",
+    "simulate": "node simulation/getrecommendation.js"
   },
   "repository": {
     "type": "git",
