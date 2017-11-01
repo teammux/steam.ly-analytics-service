@@ -11,7 +11,7 @@ const { elasticClient } = require('../../server/elasticsearch');
 const knex = Knex(knexConfig);
 Model.knex(knex);
 
-const DEFAULT_TOTAL_USER_COUNT = 100000;
+const DEFAULT_TOTAL_USER_COUNT = 1000000;
 const DEFAULT_USER_NUMBER_START = 1;
 
 const RECOMMENDATION_RATIO = {
@@ -50,7 +50,7 @@ const generateExpandedWeightTable = (weightKeys) => {
 };
 
 const getRandomNumberInclusive = (begin = 0, end) => (
-  Math.floor(Math.random() * (end - begin + 1)) + begin
+  Math.floor(Math.random() * end) + begin
 );
 
 const getRandomFieldValue = weightTable => (
