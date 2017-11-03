@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Knex = require('knex');
-const knexConfig = require('../db/knexfile');
 const { Model } = require('objection');
+const knexConfig = require('../db/knexfile');
 const api = require('./api');
 
 const PORT = process.env.DATABASE_URL || 3000;
