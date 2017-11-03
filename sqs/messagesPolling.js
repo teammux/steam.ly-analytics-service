@@ -8,7 +8,6 @@ const RECOMMENDATION_URL = 'https://sqs.us-west-2.amazonaws.com/504566468641/rec
 const app = Consumer.create({
   queueUrl: RECOMMENDATION_URL,
   handleMessage: (message, done) => {
-    // do some work with `message`
     console.log(message);
     done();
   },  
