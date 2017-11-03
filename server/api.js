@@ -13,22 +13,22 @@ routes.get('/api/v1/recommendations', (req, res) => {
 
 routes.get('/api/v1/recommendations/user/:userId', (req, res) => {
   db.getUserRecommendation(req.params.userId)
-    .then(recommendation => {
-      let randomGame = simulate.randomGame()
+    .then((recommendation) => {
+      const randomGame = simulate.randomGame();
       const recs = {
-          recommended: [
-            recommendation[0]
-          ],
-          random: [
-            {
-              id: recommendation[0].id,
-              user_id: recommendation[0].user_id,
-              game_id: randomGame.game_id, // TODO: Integrate content-service API interface to get Random Game
-              title: randomGame.title, // TODO: Integrate content-service API interface to get Random Game
-            }
-          ]
-        }
-      res.json(recs)
+        recommended: [
+          recommendation[0],
+        ],
+        random: [
+          {
+            id: recommendation[0].id,
+            user_id: recommendation[0].user_id,
+            game_id: randomGame.game_id, // TODO: Integrate content-service API interface to get Random Game
+            title: randomGame.title, // TODO: Integrate content-service API interface to get Random Game
+          },
+        ],
+      };
+      res.json(recs);
     });
 });
 
