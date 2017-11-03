@@ -1,5 +1,7 @@
 const routes = require('express').Router();
 const db = require('../db/dbHelpers');
+const AWS = require('aws-sdk');
+const simulate = require('./helpers');
 
 routes.get('/', (req, res) => {
   res.status(200).send('Home Page');
@@ -12,7 +14,23 @@ routes.get('/api/v1/recommendations', (req, res) => {
 
 routes.get('/api/v1/recommendations/user/:userId', (req, res) => {
   db.getUserRecommendation(req.params.userId)
-    .then(recommendation => res.json(recommendation[0]));
+    .then(recommendation => {
+      let randomGame = simulate.randomGame()
+      const recs = {
+          recommended: [
+            recommendation[0]
+          ],
+          random: [
+            {
+              id: recommendation[0].id,
+              user_id: recommendation[0].user_id,
+              game_id: randomGame.game_id,
+              title: randomGame.title,
+            }
+          ]
+        }
+      res.json(recs)
+    });
 });
 
 module.exports = routes;

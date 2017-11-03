@@ -85,4 +85,3 @@ const addRecommendationToDB = async () => {
 };
 
 addRecommendationToDB();
-

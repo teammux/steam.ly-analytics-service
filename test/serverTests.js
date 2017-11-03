@@ -26,15 +26,9 @@ describe('Server', () => {
       })
         .then((res) => {
           const results = JSON.parse(res);
-          expect(results).to.be.an('array');
-          expect(results[0]).to.be.an('object');
-          expect(results[0]).to.deep.equal({
-            id: 32,
-            user_id: 32,
-            game_id: 6,
-            title: 'H1Z1',
-            preference: 'FPS',
-          });
+          expect(results).to.be.an('object');
+          expect(results).to.have.property('recommended');
+          expect(results).to.have.property('random');
         });
       done();
     });
