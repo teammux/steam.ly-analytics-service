@@ -6,8 +6,6 @@
   "scripts": {
     "start": "nodemon --inspect server/index.js",
     "test": "mocha",
-    "generateuser": "node db/dummydatascript/userdata.js 1000",
-    "generaterecommendation": "node db/dummydatascript/fakeRecommendation.js 1000",
     "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js",
     "simulate": "node simulation/getrecommendation.js"
   },
@@ -22,17 +20,21 @@
   },
   "homepage": "https://github.com/teammux/steam.ly-analytics-service#readme",
   "dependencies": {
+    "aws-sdk": "^2.142.0",
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
+    "config": "^1.27.0",
     "elasticsearch": "^13.3.1",
     "express": "^4.16.2",
     "knex": "^0.13.0",
     "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
     "objection": "^0.8.9",
     "pg": "^7.3.0",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "sqs-consumer": "^3.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",

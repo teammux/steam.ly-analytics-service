@@ -20,7 +20,7 @@ TODO: Add recommendation_coefficient
 
 #### /recommendations
 
-Example: http://steam.ly/api/v1/recommendations
+Example: http://steam.ly/api/v1/recommendations/user/1
 
 __Response:__
 
