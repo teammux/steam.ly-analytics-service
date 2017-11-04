@@ -21,7 +21,7 @@ const RECOMMENDATION_RATIO = {
   RPG: 20,
 };
 
-const RANDOM_GAME = [
+const RECOMMENDED_GAME = [
   "PLAYERUNKNOWN'S BATTLEGROUNDS",
   'Dota 2',
   'Counter-Strike: Global Offensive',
@@ -61,11 +61,11 @@ const addRecommendationToDB = async () => {
   const RECOMMENDATION_RATIO_WEIGHT_TABLE = generateExpandedWeightTable(RECOMMENDATION_RATIO);
 
   for (let i = DEFAULT_USER_NUMBER_START; i < (DEFAULT_TOTAL_USER_COUNT + DEFAULT_USER_NUMBER_START); i += 1) {
-    const randomNumber = getRandomNumberInclusive(0, RANDOM_GAME.length);
+    const randomNumber = getRandomNumberInclusive(0, RECOMMENDED_GAME.length);
     await models.Recommendations.query().insert({
       user_id: i,
       game_id: randomNumber,
-      title: RANDOM_GAME[randomNumber],
+      title: RECOMMENDED_GAME[randomNumber],
       preference: getRandomFieldValue(RECOMMENDATION_RATIO_WEIGHT_TABLE),
     })
       .then((recommendation) => {
