@@ -14,19 +14,18 @@ describe('Database', () => {
     it('should query user recommendation for user with user_id of 5', () => {
       return dbHelpers.getUserRecommendation(10)
         .then((recommendation) => {
-          expect(recommendation).to.be.an('array');
-          expect(recommendation[0]).to.be.an('object');
-          expect(recommendation[0]).to.have.property('id');
-          expect(recommendation[0]).to.have.property('user_id');
-          expect(recommendation[0]).to.have.property('game_id');
-          expect(recommendation[0]).to.have.property('title');
-          expect(recommendation[0]).to.have.property('preference');
+          expect(recommendation).to.be.an('object');
+          expect(recommendation).to.have.property('id');
+          expect(recommendation).to.have.property('user_id');
+          expect(recommendation).to.have.property('game_id');
+          expect(recommendation).to.have.property('title');
+          expect(recommendation).to.have.property('preference');
         });
     });
     it('should query the correct user recommendations', () => {
       return dbHelpers.getUserRecommendation(5)
         .then((recommendation) => {
-          expect(recommendation[0]).to.deep.include({
+          expect(recommendation).to.deep.include({
             id: 5,
             user_id: 5,
             game_id: 4,

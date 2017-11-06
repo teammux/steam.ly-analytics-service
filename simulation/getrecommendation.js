@@ -11,7 +11,7 @@ const getRecommendation = (userId) => {
 const getRecsForUser = (userId) => {
   const user = {
     id: userId,
-    preference: 'ACTION',
+    preference: 'FPS',
   };
   axios.post('http://127.0.0.1:3000/api/v1/recommendations/user', user)
     .then((response) => {
