@@ -22,12 +22,12 @@ const sendRecommendation = (userId) => {
       const randomGame = simulate.randomGame();
       const recs = {
         recommended: [
-          recommendation[0],
+          recommendation,
         ],
         random: [
           {
-            id: recommendation[0].id,
-            user_id: recommendation[0].user_id,
+            id: recommendation.id,
+            user_id: recommendation.user_id,
             game_id: randomGame.game_id, // TODO: Integrate content-service API interface to get Random Game
             title: randomGame.title, // TODO: Integrate content-service API interface to get Random Game
           },
