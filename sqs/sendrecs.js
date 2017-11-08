@@ -52,10 +52,10 @@ const sendRecommendation = (userId) => {
 
 module.exports.sendRecommendation = sendRecommendation;
 
-const getRandomNumberInclusive = (begin = 0, end) => (
-  Math.floor(Math.random() * end) + begin
-);
+// const getRandomNumberInclusive = (begin = 0, end) => (
+//   Math.floor(Math.random() * end) + begin
+// );
 
-setInterval(() => {
-  sendRecommendation(getRandomNumberInclusive(0, 1000000));
-}, 100);
+// setInterval(() => {
+//   sendRecommendation(getRandomNumberInclusive(0, 1000000));
+// }, 100);

@@ -24,12 +24,12 @@ const getRandomInclusive = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// getRecsForUser(100);
+getRecsForUser(100);
 // getRecommendation(100);
 
-setInterval(() => {
-  getRecsForUser(getRandomInclusive(0, 1000000));
-}, 100);
+// setInterval(() => {
+//   getRecsForUser(getRandomInclusive(0, 1000000));
+// }, 100);
 
 // setInterval(() => {
 //   getRecommendation(getRandomInclusive(0, 1000000));
