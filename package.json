@@ -7,7 +7,8 @@
     "start": "nodemon --inspect server/index.js",
     "test": "mocha",
     "addfakerecommendation": "node db/dummydatascript/addFakeRecommendation.js",
-    "simulate": "node simulation/getrecommendation.js"
+    "simulate": "node simulation/getrecommendation.js",
+    "generaterecommendation": "node db/dummydatascript/fakeRecommendation.js"
   },
   "repository": {
     "type": "git",
@@ -27,11 +28,13 @@
     "config": "^1.27.0",
     "elasticsearch": "^13.3.1",
     "express": "^4.16.2",
+    "fakerator": "^0.3.0",
     "knex": "^0.13.0",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.1",
     "objection": "^0.8.9",
     "pg": "^7.3.0",
+    "random-js": "^1.0.8",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "sqs-consumer": "^3.8.0"
