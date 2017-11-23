@@ -24,4 +24,3 @@ const randomGame = () => {
 };
 
 module.exports.randomGame = randomGame;
-

@@ -63,10 +63,10 @@ if (process.argv.length > 2) {
   const parsedNumberCmd = parseInt(cmd, 10);
   if (Number.isInteger(parsedNumberCmd) && parsedNumberCmd > 0) {
     console.log(`generating random list of: ${parsedNumberCmd} recommendations...`);
-    const generatedUsers = generatedRandomListOfRecommendation(parsedNumberCmd);
+    const generatedRecommendation = generatedRandomListOfRecommendation(parsedNumberCmd);
 
     // TODO: add option to specify an alternate output_file_name
-    fs.writeFile(DEFAULT_OUTPUT_FILE, JSON.stringify(generatedUsers), (err) => {
+    fs.writeFile(DEFAULT_OUTPUT_FILE, JSON.stringify(generatedRecommendation), (err) => {
       if (err) {
         console.error('error detected:', err);
         return;
@@ -78,7 +78,7 @@ if (process.argv.length > 2) {
 } else {
   console.log(`
     Utility script used to generate initial User data to populate a dataset
-      [usage] node userdata.js <NUMBER_OF_USERS_TO_GENERATE>
+      [usage] node fakeRecommendation.js <NUMBER_OF_RECOMMENDATIONS_TO_GENERATE>
     `);
 }
 
